@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QApplication, QColorDialog, QDialog, QFileDialog,
 from mne import read_source_estimate
 from mne.datasets.sample import sample
 
-from base_widgets import EditList
+from base_widgets import SimpleList
 
 stylable_widgets = ['QAbstractScrollArea', 'QCheckBox', 'QColumnView', 'QComboBox',
                     'QDateEdit', 'QDateTimeEdit', 'QDialog', 'QDialogButtonBox', 'QDockWidget',
@@ -20,6 +20,7 @@ stylable_widgets = ['QAbstractScrollArea', 'QCheckBox', 'QColumnView', 'QComboBo
                     'QSlider', 'QSpinBox', 'QSplitter', 'QStatusBar', 'QTabBar', 'QTabWidget',
                     'QTableView', 'QTableWidget', 'QTextEdit', 'QTimeEdit', 'QToolBar', 'QToolButton',
                     'QToolBox', 'QToolTip', 'QTreeView', 'QTreeWidget', 'QWidget']
+
 
 class QSSViewer(QDialog):
     def __init__(self, main_win):
@@ -62,7 +63,7 @@ class DarkSheetPicker(QMainWindow):
         layout = QVBoxLayout()
         self.list_layout = QHBoxLayout()
 
-        self.item_list = EditList(ui_button_pos='bottom', title='Select Item')
+        self.item_list = SimpleList(title='Select Item')
         self.item_list.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
         self.item_list.currentChanged.connect(self.item_selected)
         self.list_layout.addWidget(self.item_list)
@@ -74,7 +75,7 @@ class DarkSheetPicker(QMainWindow):
 
         # Example Widgets
         bt_layout = QHBoxLayout()
-        
+
         show_bt = QPushButton('Show Stylesheet')
         show_bt.clicked.connect(partial(QSSViewer, self))
         bt_layout.addWidget(show_bt)
